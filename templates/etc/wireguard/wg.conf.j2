@@ -64,7 +64,9 @@ PersistentKeepalive = {{hostvars[host].wireguard_persistent_keepalive}}
          wireguard_dc['name'] != hostvars[host].wireguard_dc['name']
        )
 %}
+{%       if hostvars[host].wireguard_dc['endpoint'] is defined %}
 Endpoint = {{hostvars[host].wireguard_dc['endpoint']}}:{{hostvars[host].wireguard_dc['port']}}
+{%       endif %}
 {%     elif hostvars[host].wireguard_port is defined and hostvars[host].wireguard_port is number %}
 {%       if hostvars[host].wireguard_endpoint is defined and hostvars[host].wireguard_endpoint != "" %}
 Endpoint = {{hostvars[host].wireguard_endpoint}}:{{hostvars[host].wireguard_port}}
